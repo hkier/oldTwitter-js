@@ -5,25 +5,32 @@ const tweetBank = require('../tweetBank');
 
 router.get('/', function (req, res) {
   let tweets = tweetBank.list();
-  res.render( 'index', { tweets: tweets } );
+  res.render( 'index', { tweets: tweets, showForm: true } );
 });
 
 router.get('/users/:name', function(req, res) {
-  var name = req.params.name;
-  var tweets = tweetBank.find( {name: name} );
+  let name = req.params.name;
+  let tweets = tweetBank.find( {name: name} );
   // console.log('param:' , req.params);
   console.log('tweets ', tweets);
-  res.render( 'index', { tweets: tweets } );
+  res.render( 'index', { tweets: tweets, showForm: true, name: name } );
 });
 
 router.get('/tweets/:id', function(req, res) {
-  var id = parseInt(req.params.id);
-  var tweets = tweetBank.find( {id: id} );
+  let id = parseInt(req.params.id);
+  let tweets = tweetBank.find( {id: id} );
     console.log('id ', id);
     console.log('bank ',tweetBank);
   // console.log('param:' , req.params);
   console.log('tweets ', tweets);
-  res.render( 'index', { tweets: tweets } );
+  res.render( 'index', { tweets: tweets, showForm: true  } );
+});
+
+router.post('/tweets', function(req, res) {
+  let name = req.body.name;
+  let text = req.body.text;
+  tweetBank.add(name, text);
+  res.redirect('/');
 });
 
 // router.get('/stylesheets',(req,res) =>{
