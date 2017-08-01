@@ -5,8 +5,6 @@ let data = [];
 
 let id= 0;
 
-
-
 //public methods
 function add (name, content) {
   data.push({ name: name, content: content, id: id});
