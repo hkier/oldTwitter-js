@@ -3,9 +3,14 @@ const _ = require('lodash');
 //data array
 let data = [];
 
+let id= 0;
+
+
+
 //public methods
 function add (name, content) {
-  data.push({ name: name, content: content });
+  data.push({ name: name, content: content, id: id});
+  id++;
 }
 
 function list () {

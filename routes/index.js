@@ -16,7 +16,15 @@ router.get('/users/:name', function(req, res) {
   res.render( 'index', { tweets: tweets } );
 });
 
-
+router.get('/tweets/:id', function(req, res) {
+  var id = parseInt(req.params.id);
+  var tweets = tweetBank.find( {id: id} );
+    console.log('id ', id);
+    console.log('bank ',tweetBank);
+  // console.log('param:' , req.params);
+  console.log('tweets ', tweets);
+  res.render( 'index', { tweets: tweets } );
+});
 
 // router.get('/stylesheets',(req,res) =>{
 //     res.sendfile('./public/stylesheets/style.css');
