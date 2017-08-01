@@ -94,8 +94,12 @@
   // When 'new_tweet' events are fired, do something with the packaged tweet
   socket.on('newTweet', function (tweet) {
     console.log(tweet);
-    alert('Refreshing... check the console...');
+    // alert('Refreshing... check the console...');
     // some logic to add the new tweet to the DOM…
+    $("#fun-stuff").append(
+      
+      `<li><a href="/users/${tweet.name}" class="person">${tweet.name}</a> - ${tweet.text}</li>`
+    );
   });
 
 </script>

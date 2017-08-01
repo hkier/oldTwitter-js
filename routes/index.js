@@ -12,18 +12,12 @@ module.exports = function(io) {
   router.get('/users/:name', function(req, res) {
     let name = req.params.name;
     let tweets = tweetBank.find( {name: name} );
-    // console.log('param:' , req.params);
-    console.log('tweets ', tweets);
     res.render( 'index', { tweets: tweets, showForm: true, name: name } );
   });
 
   router.get('/tweets/:id', function(req, res) {
     let id = parseInt(req.params.id);
     let tweets = tweetBank.find( {id: id} );
-      console.log('id ', id);
-      console.log('bank ',tweetBank);
-    // console.log('param:' , req.params);
-    console.log('tweets ', tweets);
     res.render( 'index', { tweets: tweets, showForm: true  } );
   });
 
@@ -31,6 +25,7 @@ module.exports = function(io) {
     let name = req.body.name;
     let text = req.body.text;
     tweetBank.add(name, text);
+    io.sockets.emit('newTweet', { name: name, text: text });
     res.redirect('/');
   });
 
