@@ -54,6 +54,11 @@ code {
 .content {
   margin-left: 60px;
 }
-.content .by {
+.content .by, .person {
   font-weight: bold;
 }
+
+ul {
+  list-style-type: none;
+}
+
